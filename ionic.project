@@ -1,6 +1,6 @@
 {
   "name": "iStockWatcher",
-  "app_id": "",
+  "app_id": "0d070313",
   "gulpStartupTasks": [
     "sass",
     "watch"

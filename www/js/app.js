@@ -1,5 +1,7 @@
 angular.module('iStockWatcher', [
     'ionic',
+    'nvd3',
+    'nvChart',
     'iStockWatcher.controllers',
     'iStockWatcher.services',
     'iStockWatcher.directives',
