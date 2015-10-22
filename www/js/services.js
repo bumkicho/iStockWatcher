@@ -15,6 +15,18 @@ angular.module('iStockWatcher.services', [])
         var date = $filter('date')(d, 'yyyy-MM-dd');
         return date;
     };
+    var oneMonthAgoDate = function() {
+        var d = new Date();
+        d.setDate(new Date().getDate()-30);        
+        var date = $filter('date')(d, 'yyyy-MM-dd');
+        return date;
+    };
+    var oneQuarterAgoDate = function() {
+        var d = new Date();
+        d.setDate(new Date().getDate()-90);        
+        var date = $filter('date')(d, 'yyyy-MM-dd');
+        return date;
+    };
     var oneYearAgoDate = function() {
         var d = new Date();
         d.setDate(new Date().getDate()-365);
@@ -23,6 +35,8 @@ angular.module('iStockWatcher.services', [])
     };
     return {
         currentDate: currentDate,
+        oneMonthAgoDate: oneMonthAgoDate,
+        oneQuarterAgoDate: oneQuarterAgoDate,
         oneYearAgoDate: oneYearAgoDate
     };
 })
@@ -74,10 +88,13 @@ angular.module('iStockWatcher.services', [])
 .factory('chartDataService', function($q, $http, encodeURIService) {
     
     var getHistoricData = function(ticker, fromDate, toDate) {
-        
+        console.log(fromDate);
+        console.log(toDate);
         var deferred = $q.defer(),
             query = 'select * from yahoo.finance.historicaldata where symbol = "'+ticker+'" and startDate = "'+fromDate+'" and endDate = "'+toDate+'"',
             url='http://query.yahooapis.com/v1/public/yql?q='+encodeURIService.encode(query)+'&format=json&env=http://datatables.org/alltables.env';
+        
+        //console.log(url);
         
         $http.get(url)
         .success(function(json){

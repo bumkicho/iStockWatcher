@@ -1,1 +1,22 @@
-/* Empty. Add your own CSS if you like */
+/* Chart Styles */
+
+#interactiveChart {
+    height: 80vmin;
+}
+
+/* Adjustment Styles */
+svg text {
+    font: 400 10pt "Helvetica Neue", sans-serif !important;
+}
+
+.nv-focus .nv-barsWrap,
+.nv-focus .nv-y1 .tick,
+.nv-focus .nv-y1 .nv-axisMaxMin,
+.nv-focus .nv-y1 .domain,
+.nv-context .nv-x .nv-axisMaxMin,
+.nv-context .nv-y1 .tick,
+.nv-context .nv-y1 .nv-axisMaxMin,
+.nv-context .nv-y1 .domain
+{
+    display: none; !important;
+}

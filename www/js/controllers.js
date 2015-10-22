@@ -51,8 +51,8 @@ function($scope) {
 .controller('StockCtrl', ['$scope','$stateParams','stockDataService','dateService','$window','chartDataService',
 function($scope,$stateParams,stockDataService,dateService,$window,chartDataService) {
     $scope.ticker = $stateParams.selectedStockTicker;
-    $scope.chartView = 4;
-    $scope.fromDate = dateService.oneYearAgoDate();
+    $scope.chartView = 1;
+    $scope.fromDate = dateService.oneMonthAgoDate();
     $scope.toDate = dateService.currentDate();    
     //console.log(dateService.currentDate());
     //console.log(dateService.oneYearAgoDate());
@@ -64,6 +64,20 @@ function($scope,$stateParams,stockDataService,dateService,$window,chartDataServi
     });
     
     $scope.switchChratView = function(n){
+        if(n==1){
+            $scope.fromDate = dateService.oneMonthAgoDate();
+            $scope.toDate = dateService.currentDate(); 
+            getChartData();
+        } else if(n==2){
+            $scope.fromDate = dateService.oneQuarterAgoDate();
+            $scope.toDate = dateService.currentDate();
+            getChartData();
+        } else if(n==3){
+            $scope.fromDate = dateService.oneYearAgoDate();
+            $scope.toDate = dateService.currentDate();
+            getChartData();
+        }
+        
         $scope.chartView = n;
         //console.log($scope.chartView);
     };
@@ -134,7 +148,7 @@ function($scope,$stateParams,stockDataService,dateService,$window,chartDataServi
 	$scope.chartOptions = {
 		chartType: 'linePlusBarWithFocusChart',
 		data: 'myData',
-		margin: {top: 15, right: 40, bottom: marginBottom, left: 70},
+		margin: {top: 15, right: 30, bottom: marginBottom, left: 30},
 		interpolate: "cardinal",
 		useInteractiveGuideline: false,
 		yShowMaxMin: false,
@@ -149,7 +163,9 @@ function($scope,$stateParams,stockDataService,dateService,$window,chartDataServi
 		y2AxisTickFormat: y2TickFormat,
 		y3AxisTickFormat: y3TickFormat,
 		y4AxisTickFormat: y4TickFormat,
-		transitionDuration: 500
+		transitionDuration: 500,
+        y1AxisLabel: 'Price',
+        y3AxisLabel: 'Volume'
 	};
 
     
